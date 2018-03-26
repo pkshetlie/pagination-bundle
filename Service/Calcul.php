@@ -2,11 +2,10 @@
 
 namespace  Pkshetlie\PaginationBundle\Service;
 
-use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Exception;
-use PaginationBundle\Models\Pagination;
+use Pkshetlie\PaginationBundle\Models\Pagination;
 use Symfony\Component\HttpFoundation\Request;
 
 class Calcul
