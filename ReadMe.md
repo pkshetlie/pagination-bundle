@@ -4,7 +4,7 @@ Installation
 
 add to AppKernel.php 
 
- ``` 
+ ``` php
  [ 
         ...
         new Pkshetlie\PaginationBundle\PaginationBundle(), 
@@ -14,7 +14,7 @@ add to AppKernel.php
  
  Add to config.yml
  
-  ``` 
+  ``` yaml
 imports:
     ...
     - { resource: "@PaginationBundle/Resources/config/services.yml" }
