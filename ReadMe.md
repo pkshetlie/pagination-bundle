@@ -32,7 +32,7 @@ imports:
     public function indexAction(Request $request){
         $qb = $this->getDoctrine()->getReposiitory('DummyBundle:DummyEntity')->createQueryBuilder('x');
         
-        // add some 
+        // you can add some 
         /*
         $qb->orderBy( ... )
         $qb->where( ... )
