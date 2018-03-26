@@ -1,0 +1,10 @@
+{
+  "name": "pkshetlie/PaginationBundle",
+  "description": "Easy way to make html table with paginations",
+  "require": {
+    "php": "^7.0",
+    "doctrine/doctrine-bundle": "^1.6",
+    "doctrine/orm": "^2.5",
+    "symfony/symfony": "3.4.*"
+  }
+}
