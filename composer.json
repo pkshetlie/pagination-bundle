@@ -1,5 +1,5 @@
 {
-  "name": "pkshetlie/PaginationBundle",
+  "name": "pkshetlie/pagination-bundle",
   "description": "Easy way to make html table with paginations",
   "require": {
     "php": "^7.0",
