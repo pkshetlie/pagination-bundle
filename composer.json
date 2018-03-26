@@ -27,5 +27,10 @@
     "psr-4": {
       "Pkshetlie\\": "src/"
     }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
   }
 }
