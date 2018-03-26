@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: p.pobelle
- * Date: 02/03/2018
- * Time: 10:56
- */
 
-namespace PaginationBundle\Models;
+namespace  Pkshetlie\PaginationBundle\Models;
 
 
 use Doctrine\ORM\Mapping\Entity;

@@ -1,6 +1,6 @@
 <?php
 
-namespace PaginationBundle\Controller;
+namespace Pkshetlie\PaginationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

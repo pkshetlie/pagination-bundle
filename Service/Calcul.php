@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: p.pobelle
- * Date: 02/03/2018
- * Time: 10:18
- */
 
-namespace PaginationBundle\Service;
-
+namespace  Pkshetlie\PaginationBundle\Service;
 
 use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
