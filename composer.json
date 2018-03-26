@@ -1,5 +1,6 @@
 {
   "name": "pkshetlie/pagination-bundle",
+  "license": "GPL-3.0-or-later",
   "description": "Easy way to make html table with paginations",
   "require": {
     "php": "^7.0",
