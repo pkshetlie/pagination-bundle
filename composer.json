@@ -2,10 +2,38 @@
   "name": "pkshetlie/pagination-bundle",
   "license": "GPL-3.0-or-later",
   "description": "Easy way to make html table with paginations",
+  "keywords": [
+    "pagination",
+    "page",
+    "symfony",
+    "twig"
+  ],
+  "homepage": "https://github.com/pkshetlie/pagination-bundle",
   "require": {
     "php": "^7.0",
     "doctrine/doctrine-bundle": "^1.6",
     "doctrine/orm": "^2.5",
     "symfony/symfony": "3.4.*"
+  },
+  "authors": [
+    {
+      "name": "Pierrick POBELLE",
+      "email": "pierrick.pobelle@gmail.com",
+      "homepage": "http://pierrick.pobelle.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Pkshetlie\\": "src/"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "v1.0"
+    }
   }
 }
