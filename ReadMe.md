@@ -62,3 +62,5 @@ imports:
  {# draw the pagination #}
  {{ macro_pagination.paginate(pagination) }}
  ```
+ 
+ that's all ! 
