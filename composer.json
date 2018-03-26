@@ -25,9 +25,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "Pkshetlie\\PaginationBundle\\": "src/"
+      "Pkshetlie\\PaginationBundle\\": ""
     }
   },
+  "target-dir": "Pkshetlie/PaginationBundle",
   "extra": {
     "branch-alias": {
       "dev-master": "1.x-dev"
