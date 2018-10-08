@@ -2,12 +2,12 @@
     {% set after = false %}
     {% set before = false %}
     {% set last_page = null %}
-    <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge({ppage:1})) }}"
+    <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({ppage:1})) }}"
        class="{% if pagination.current == 0 %}font-bold{% endif %}">1</a>
     {% if(pagination.pages>1) %}
         {% for page in 2..(pagination.pages) %}
             {% if (page <= pagination.current +2 and page >= pagination.current-2) or loop.index+1 == pagination.pages %}
-                <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge({ppage:page})) }}"
+                <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({ppage:page})) }}"
                    class="{% if pagination.current == page %}font-bold{% endif %}">{{ page }}</a>
             {% endif %}
             {% if page > pagination.current+2 and after == false %}
