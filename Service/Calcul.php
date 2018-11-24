@@ -38,12 +38,15 @@ class Calcul
         $startAt = $page * $this->nb_elt_per_page;
         $count_qb = clone $qb;
         try {
-            $countRslt = $count_qb->select('COUNT(' . $qb->getAllAliases()[0] . ')')->getQuery()->getSingleScalarResult();
+            if($qb->getDQLPart('groupBy')) {
+                $countRslt = $count_qb->select('COUNT(DISTINCT(' . $qb->getAllAliases()[0] . '))')->resetDQLPart('groupBy')->getQuery()->getSingleScalarResult();
+            }else{
+                $countRslt = $count_qb->select('COUNT(' . $qb->getAllAliases()[0] . ')')->getQuery()->getSingleScalarResult();
+            }
         } catch (Exception $e) {
-//            var_dump($e->getMessage()); die;
         }
         $nb_pages = ceil($countRslt / $this->nb_elt_per_page);
-        $entities = $qb->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getScalarResult();
+        $entities = $qb->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getResult();
 
         $pagination = new Pagination();
         $pagination->setEntities($entities);
