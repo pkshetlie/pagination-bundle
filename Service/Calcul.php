@@ -43,7 +43,7 @@ class Calcul
             var_dump($e->getMessage()); die;
         }
         $nb_pages = ceil($countRslt / $this->nb_elt_per_page);
-        $entities = $qb->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getResult();
+        $entities = $qb->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getScalarResult();
 
         $pagination = new Pagination();
         $pagination->setEntities($entities);
