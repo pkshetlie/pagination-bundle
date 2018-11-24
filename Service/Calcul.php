@@ -40,7 +40,7 @@ class Calcul
         try {
             $countRslt = $count_qb->select('COUNT(' . $qb->getAllAliases()[0] . ')')->getQuery()->getSingleScalarResult();
         } catch (Exception $e) {
-            var_dump($e->getMessage()); die;
+//            var_dump($e->getMessage()); die;
         }
         $nb_pages = ceil($countRslt / $this->nb_elt_per_page);
         $entities = $qb->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getScalarResult();
