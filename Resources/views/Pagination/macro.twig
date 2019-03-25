@@ -3,7 +3,7 @@
     {% set before = false %}
     {% set last_page = null %}
     <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({ppage:1})) }}"
-       class="{% if pagination.current == 0 || pagination.current == 1 %}active{% endif %}">1</a>
+       class="{% if pagination.current == 0 or pagination.current == 1 %}active{% endif %}">1</a>
     {% if(pagination.pages>1) %}
         {% for page in 2..(pagination.pages) %}
             {% if (page <= pagination.current +2 and page >= pagination.current-2) or loop.index+1 == pagination.pages %}
