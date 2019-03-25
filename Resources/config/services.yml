@@ -1,4 +1,5 @@
 services:
     pkshetlie.pagination:
+        public: true
         class:  Pkshetlie\PaginationBundle\Service\Calcul
         arguments: ["@doctrine.orm.entity_manager"]
