@@ -27,22 +27,24 @@ class Calcul
     }
 
     /**
-     * @param QueryBuilder $qb
+     * @param QueryBuilder $queryBuilder
      * @param Request $request
      * @return Pagination
      */
-    public function process(QueryBuilder $qb, Request $request)
+    public function process(QueryBuilder $queryBuilder, Request $request)
     {
+        $usableQuery = clone $queryBuilder;
         $page = $request->get('ppage', 1) - 1;
 
         $startAt = $page * $this->nb_elt_per_page;
-        $count_qb = clone $qb;
         try {
-            $countRslt = $count_qb->addSelect('COUNT(' . $qb->getAllAliases()[0] . ') as count_nb_elt')->getQuery()->getOneOrNullResult();
+            $countRslt = $usableQuery->addSelect('COUNT( DISTINCT ' . $usableQuery->getAllAliases()[0] . ') as count_nb_elt')->getQuery()->getOneOrNullResult();
         } catch (Exception $e) {
+            var_dump($e->getMessage());
+            $countRslt['count_nb_elt'] = 0;
         }
         $nb_pages = ceil($countRslt['count_nb_elt'] / $this->nb_elt_per_page);
-        $entities = $qb->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getResult();
+        $entities = $queryBuilder->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getResult();
 
         $pagination = new Pagination();
         $pagination->setEntities($entities);
