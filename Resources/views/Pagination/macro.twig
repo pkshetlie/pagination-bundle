@@ -24,6 +24,6 @@
 
 {% macro seeMore(pagination, BtnText, class) %}
     {% if pagination.pages > pagination.current %}
-        <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({ppage:(pagination.current+1),ppartial:true})) }}" class="btn-paginatation see-more {{ class }}" data-page="{{ pagination.current+1 }}">{{ BtnText }}</a>
+        <button data-href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({ppage:(pagination.current+1),ppartial:true})) }}" class="btn-paginatation see-more {{ class }}" data-page="{{ pagination.current+1 }}">{{ BtnText }}</button>
     {% endif %}
 {% endmacro %}
