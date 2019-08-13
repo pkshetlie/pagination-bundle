@@ -1,16 +1,16 @@
 {% macro paginate(pagination) %}
     {% set after = false %}
     {% set before = false %}
-    {% set last_page = null %}
-    <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({ppage:1})) }}"
+    <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):1})) }}"
        class="{% if pagination.current == 0 or pagination.current == 1 %}active{% endif %}">1</a>
     {% if(pagination.pages>1) %}
         {% for page in 2..(pagination.pages) %}
             {% if (page <= pagination.current +2 and page >= pagination.current-2) or loop.index+1 == pagination.pages %}
-                <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({ppage:page})) }}"
+                <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):page})) }}"
                    class="{% if pagination.current == page %}active{% endif %}">{{ page }}</a>
             {% endif %}
-            {% if page > pagination.current+2 and after == false %}
+
+            {% if page > pagination.current+2 and after == false and pagination.pages > 4 %}
                 ...
                 {% set after = true %}
             {% endif %}
@@ -24,6 +24,6 @@
 
 {% macro seeMore(pagination, BtnText, class) %}
     {% if pagination.pages > pagination.current %}
-        <button data-href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({ppage:(pagination.current+1),ppartial:true})) }}" class="btn-paginatation see-more {{ class }}" data-page="{{ pagination.current+1 }}">{{ BtnText }}</button>
+        <button data-href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):(pagination.current+1),ppartial:true})) }}" class="btn-paginatation see-more {{ class }}" data-page="{{ pagination.current+1 }}">{{ BtnText }}</button>
     {% endif %}
 {% endmacro %}

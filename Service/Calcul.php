@@ -18,7 +18,12 @@ class Calcul
         $this->em = $em;
     }
 
-    public function setDefaults($nb_elt_per_page = null)
+    /**
+     * define the default number of element by page
+     * @param int $nb_elt_per_page
+     * @return $this
+     */
+    public function setDefaults($nb_elt_per_page = 25)
     {
         if ($nb_elt_per_page !== null) {
             $this->nb_elt_per_page = $nb_elt_per_page;
@@ -33,20 +38,20 @@ class Calcul
      */
     public function process(QueryBuilder $queryBuilder, Request $request)
     {
+        $pagination = new Pagination();
+
         $usableQuery = clone $queryBuilder;
-        $page = $request->get('ppage', 1) - 1;
+        $page = $request->get('ppage'.$pagination->getIdentifier(), 1) - 1;
 
         $startAt = $page * $this->nb_elt_per_page;
         try {
             $countRslt = $usableQuery->addSelect('COUNT( DISTINCT ' . $usableQuery->getAllAliases()[0] . ') as count_nb_elt')->getQuery()->getOneOrNullResult();
         } catch (Exception $e) {
-            var_dump($e->getMessage());
             $countRslt['count_nb_elt'] = 0;
         }
         $nb_pages = ceil($countRslt['count_nb_elt'] / $this->nb_elt_per_page);
         $entities = $queryBuilder->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getResult();
 
-        $pagination = new Pagination();
         $pagination->setEntities($entities);
         $pagination->setPages($nb_pages);
         $pagination->setCount($countRslt['count_nb_elt']);

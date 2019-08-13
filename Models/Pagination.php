@@ -23,6 +23,21 @@ class Pagination
     protected $current;
 
     /**
+     * @var string
+     */
+    protected $identifier;
+
+    /**
+     * @var string
+     */
+    protected static $increment = 0;
+
+    public function __construct()
+    {
+        self::$increment += 1;
+        $this->identifier = self::$increment;
+    }
+    /**
      * @return Entity[]
      */
     public function getEntities()
@@ -86,5 +101,11 @@ class Pagination
         $this->current = $current;
     }
 
-
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
+    }
 }
