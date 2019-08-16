@@ -24,14 +24,14 @@
 
 {% macro seeMore(pagination, BtnText = "Voir plus", class = "", data_attrs= {}) %}
     {% if pagination.pages > pagination.current %}
-<button
-        {% for key,data_attr in data_attrs %}
-        data-{{ key }}="{{ data_attr }}"
-        {% endif %}
-        data-href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):(pagination.current+1),ppartial:true})) }}"
-        class="btn-paginatation see-more {{ class }}"
-        data-page="{{ pagination.current+1 }}">
-    {{ BtnText }}
-</button>
-{% endif %}
+        <button
+                {% for key,data_attr in data_attrs %}
+                    data-{{ key }}="{{ data_attr }}"
+                {% endfor %}
+                data-href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):(pagination.current+1),ppartial:true})) }}"
+                class="btn-paginatation see-more {{ class }}"
+                data-page="{{ pagination.current+1 }}">
+            {{ BtnText }}
+        </button>
+    {% endif %}
 {% endmacro %}
