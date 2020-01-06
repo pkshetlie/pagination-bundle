@@ -27,10 +27,5 @@
     "psr-4": {
       "Pkshetlie\\PaginationBundle\\": ""
     }
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "v1.x-dev"
-    }
   }
 }
