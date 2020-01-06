@@ -1,14 +1,14 @@
 $(function(){
     $(document).on('click','.btn-paginatation.see-more',function(){
        let $t = $(this);
-       var parentElt = $($t.data('parent'));
         $.ajax({
             url : $t.data('href'),
             dataType: 'html',
             success: function(data){
-                if(parentElt === undefined) {
+                if($t.data('parent') === undefined) {
                     $t.parent().append(data);
                 }else{
+                    let parentElt = $($t.data('parent'));
                     parentElt.append(data);
                 }
                 $t.remove();
