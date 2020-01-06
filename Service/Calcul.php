@@ -3,6 +3,7 @@
 namespace  Pkshetlie\PaginationBundle\Service;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Exception;
 use Pkshetlie\PaginationBundle\Models\Pagination;
@@ -13,7 +14,7 @@ class Calcul
     protected $em = null;
     private $nb_elt_per_page = 25;
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
