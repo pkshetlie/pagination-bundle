@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 class Calcul
 {
     protected $em = null;
+    protected $isPartial = false;
+    protected $lastEntityid = 0;
     private $nb_elt_per_page = 25;
 
     public function __construct(EntityManagerInterface $em)
@@ -39,10 +41,13 @@ class Calcul
      */
     public function process(QueryBuilder $queryBuilder, Request $request)
     {
-        $pagination = new Pagination();
 
+        $pagination = new Pagination();
+        $this->setLastEntityid($request->get('plentid'.$pagination->getIdentifier(), 0));
+        $this->setIsPartial($request->get('ppartial'.$pagination->getIdentifier(), false));
         $usableQuery = clone $queryBuilder;
         $page = $request->get('ppage'.$pagination->getIdentifier(), 1) - 1;
+
 
         $startAt = $page * $this->nb_elt_per_page;
         try {
@@ -59,6 +64,38 @@ class Calcul
         $pagination->setCurrent($page+1);
 
         return $pagination;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastEntityid(): int
+    {
+        return $this->lastEntityid;
+    }
+
+    /**
+     * @param int $lastEntityid
+     */
+    protected function setLastEntityid(int $lastEntityid)
+    {
+        $this->lastEntityid = $lastEntityid;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPartial(): bool
+    {
+        return $this->isPartial;
+    }
+
+    /**
+     * @param bool $isPartial
+     */
+    protected function setIsPartial(bool $isPartial)
+    {
+        $this->isPartial = $isPartial;
     }
 
 }
