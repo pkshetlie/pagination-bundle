@@ -126,7 +126,7 @@ class Pagination
     }
 
     /**
-     * @param int $lastEntityid
+     * @param int $lastEntityId
      */
     protected function setLastEntityId(int $lastEntityId)
     {
