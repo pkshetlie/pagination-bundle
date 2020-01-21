@@ -128,7 +128,7 @@ class Pagination
     /**
      * @param int $lastEntityId
      */
-    protected function setLastEntityId(int $lastEntityId)
+    public function setLastEntityId(int $lastEntityId)
     {
         $this->lastEntityId = $lastEntityId;
     }
@@ -144,7 +144,7 @@ class Pagination
     /**
      * @param bool $isPartial
      */
-    protected function setIsPartial(bool $isPartial)
+    public function setIsPartial(bool $isPartial)
     {
         $this->isPartial = $isPartial;
     }
