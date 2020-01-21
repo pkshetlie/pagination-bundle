@@ -43,8 +43,8 @@ class Calcul
     {
 
         $pagination = new Pagination();
-        $this->setLastEntityid($request->get('plentid'.$pagination->getIdentifier(), 0));
-        $this->setIsPartial($request->get('ppartial'.$pagination->getIdentifier(), false));
+        $pagination->setLastEntityId($request->get('plentid'.$pagination->getIdentifier(), 0));
+        $pagination->setIsPartial($request->get('ppartial'.$pagination->getIdentifier(), false));
         $usableQuery = clone $queryBuilder;
         $page = $request->get('ppage'.$pagination->getIdentifier(), 1) - 1;
 
@@ -65,37 +65,4 @@ class Calcul
 
         return $pagination;
     }
-
-    /**
-     * @return int
-     */
-    public function getLastEntityid(): int
-    {
-        return $this->lastEntityid;
-    }
-
-    /**
-     * @param int $lastEntityid
-     */
-    protected function setLastEntityid(int $lastEntityid)
-    {
-        $this->lastEntityid = $lastEntityid;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isPartial(): bool
-    {
-        return $this->isPartial;
-    }
-
-    /**
-     * @param bool $isPartial
-     */
-    protected function setIsPartial(bool $isPartial)
-    {
-        $this->isPartial = $isPartial;
-    }
-
 }

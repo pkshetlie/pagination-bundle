@@ -31,6 +31,14 @@ class Pagination
      * @var string
      */
     protected static $increment = 0;
+    /**
+     * @var bool
+     */
+    protected $isPartial;
+    /**
+     * @var integer
+     */
+    private $lastEntityId;
 
     public function __construct()
     {
@@ -107,5 +115,37 @@ class Pagination
     public function getIdentifier()
     {
         return $this->identifier;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastEntityId(): int
+    {
+        return $this->lastEntityId;
+    }
+
+    /**
+     * @param int $lastEntityid
+     */
+    protected function setLastEntityId(int $lastEntityId)
+    {
+        $this->lastEntityId = $lastEntityId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPartial(): bool
+    {
+        return $this->isPartial;
+    }
+
+    /**
+     * @param bool $isPartial
+     */
+    protected function setIsPartial(bool $isPartial)
+    {
+        $this->isPartial = $isPartial;
     }
 }
