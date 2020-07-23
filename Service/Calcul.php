@@ -53,7 +53,9 @@ class Calcul
         try {
             $countRslt = $usableQuery->addSelect('COUNT( DISTINCT ' . $usableQuery->getAllAliases()[0] . ') as count_nb_elt')->getQuery()->getOneOrNullResult();
         } catch (Exception $e) {
-            $countRslt['count_nb_elt'] = 0;
+            $usableQuery = clone $queryBuilder;
+            $countRsltat = $usableQuery->addSelect('COUNT( DISTINCT ' . $usableQuery->getAllAliases()[0] . ') as count_nb_elt')->getQuery()->getResult();
+            $countRslt['count_nb_elt'] = count($countRsltat);
         }
         $nb_pages = ceil($countRslt['count_nb_elt'] / $this->nb_elt_per_page);
         $entities = $queryBuilder->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getResult();
