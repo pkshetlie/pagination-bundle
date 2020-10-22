@@ -25,7 +25,11 @@
 {% macro seeMore(pagination, BtnText = "Voir plus", class = "", data_attrs= {}) %}
     {% set lastEntityId = 0 %}
     {% for entity in pagination.entities %}
-        {% set lastEntityId = entity.id %}
+        {% if entity is iterable %}
+            {% set lastEntityId = entity[0].id %}
+        {% else %}
+            {% set lastEntityId = entity.id %}
+        {% endif %}
     {% endfor %}
     {% if pagination.pages > pagination.current %}
         <button
