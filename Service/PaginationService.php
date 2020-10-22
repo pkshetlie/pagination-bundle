@@ -2,7 +2,6 @@
 
 namespace  Pkshetlie\PaginationBundle\Service;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Exception;
