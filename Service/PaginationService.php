@@ -9,10 +9,7 @@ use Exception;
 use Pkshetlie\PaginationBundle\Models\Pagination;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @deprecated use PaginationService must be removed in version
- */
-class Calcul
+class PaginationService
 {
     protected $em = null;
     protected $isPartial = false;
