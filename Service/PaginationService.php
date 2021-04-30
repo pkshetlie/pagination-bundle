@@ -56,12 +56,12 @@ class PaginationService
             $countRsltat = $usableQuery->addSelect('COUNT( DISTINCT ' . $usableQuery->getAllAliases()[0] . ') as count_nb_elt')->getQuery()->getResult();
             $countRslt['count_nb_elt'] = count($countRsltat);
         }
-        $nb_pages = ceil($countRslt['count_nb_elt'] / $this->nb_elt_per_page);
+        $nb_pages = ceil(($countRslt != null ? $countRslt['count_nb_elt']:0) / $this->nb_elt_per_page);
         $entities = $queryBuilder->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getResult();
 
         $pagination->setEntities($entities);
         $pagination->setPages($nb_pages);
-        $pagination->setCount($countRslt['count_nb_elt']);
+        $pagination->setCount(($countRslt != null ? $countRslt['count_nb_elt']:0));
         $pagination->setCurrent($page+1);
 
         return $pagination;
