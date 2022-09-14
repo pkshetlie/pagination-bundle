@@ -1,6 +1,6 @@
-{% macro paginate(pagination,displayAfterBefore = true) %}
-    {% if not displayAfterBefore %}
-        {{ _self.paginate(pagination) }}
+{% macro paginate(pagination,displayAfterBefore) %}
+    {% if  displayAfterBefore is not defined %}
+        {{ _self.paginateSimple(pagination) }}
     {% else %}
         {{ _self.paginateWithAfterBeforeNumber(pagination) }}
     {% endif %}
@@ -30,7 +30,7 @@
     {% endif %}
 {% endmacro %}
 
-{% macro paginate(pagination) %}
+{% macro paginateSimple(pagination) %}
     {% for page in 1..(pagination.pages) %}
         {% if (page <= pagination.current +2 and page >= pagination.current-2) or (pagination.current <=3 and  page <= 5)  or (pagination.current >= pagination.pages - 2 and page >= pagination.pages -4) %}
             <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):page})) }}"
