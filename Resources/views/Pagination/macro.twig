@@ -1,10 +1,11 @@
-{% macro paginate(pagination,displayAfterBefore) %}
-    {% if  displayAfterBefore is not defined %}
+{% macro paginate(pagination,displayAfterBefore = true) %}
+    {% if not displayAfterBefore %}
         {{ _self.paginateSimple(pagination) }}
     {% else %}
         {{ _self.paginateWithAfterBeforeNumber(pagination) }}
     {% endif %}
 {% endmacro %}
+
 {% macro paginateWithAfterBeforeNumber(pagination) %}
     {% set after = false %}
     {% set before = false %}
