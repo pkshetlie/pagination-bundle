@@ -58,6 +58,7 @@ class PaginationService
         }
         $nb_pages = ceil(($countRslt != null ? $countRslt['count_nb_elt'] : 0) / $this->nb_elt_per_page);
         $nb_pages = $nb_pages < 0 ? 0 : $nb_pages;
+        $startAt = $startAt < 0 ? 0 : $startAt;
         $entities = $queryBuilder->setMaxResults($this->nb_elt_per_page)->setFirstResult($startAt)->getQuery()->getResult();
 
         $pagination->setEntities($entities);
