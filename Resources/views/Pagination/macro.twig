@@ -32,7 +32,7 @@
 {% endmacro %}
 
 {% macro paginateSimple(pagination) %}
-    {% for page in 1..(pagination.pages) %}
+    {% for page in 1..(pagination.pages > 0 ? pagination.pages : 1 ) %}
         {% if (page <= pagination.current +2 and page >= pagination.current-2) or (pagination.current <=3 and  page <= 5)  or (pagination.current >= pagination.pages - 2 and page >= pagination.pages -4) %}
             <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):page})) }}"
                class="{% if pagination.current == page %}active{% endif %}">{{ page }}</a>
