@@ -9,12 +9,12 @@
 {% macro paginateWithAfterBeforeNumber(pagination) %}
     {% set after = false %}
     {% set before = false %}
-    <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):1})) }}"
+    <a href="{{ url(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):1})) }}"
        class="{% if pagination.current == 0 or pagination.current == 1 %}active{% endif %}">1</a>
     {% if(pagination.pages>1 ) %}
         {% for page in 2..(pagination.pages) %}
             {% if ((page <= pagination.current +2 and page >= pagination.current-2) or loop.index+1 == pagination.pages  )%}
-                <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):page})) }}"
+                <a href="{{ url(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):page})) }}"
                    class="{% if pagination.current == page %}active{% endif %}">{{ page }}</a>
             {% endif %}
 
@@ -34,7 +34,7 @@
 {% macro paginateSimple(pagination) %}
     {% for page in 1..(pagination.pages > 0 ? pagination.pages : 1 ) %}
         {% if (page <= pagination.current +2 and page >= pagination.current-2) or (pagination.current <=3 and  page <= 5)  or (pagination.current >= pagination.pages - 2 and page >= pagination.pages -4) %}
-            <a href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):page})) }}"
+            <a href="{{ url(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({("ppage"~pagination.identifier):page})) }}"
                class="{% if pagination.current == page %}active{% endif %}">{{ page }}</a>
         {% endif %}
     {% endfor %}
@@ -54,7 +54,7 @@
                 {% for key,data_attr in data_attrs %}
                     data-{{ key }}="{{ data_attr }}"
                 {% endfor %}
-                data-href="{{ url(app.request.get('_route'),app.request.get('_route_params')|merge(app.request.query.all)|merge({
+                data-href="{{ url(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({
                     ("ppage"~pagination.identifier):(pagination.current+1),
                     ("ppartial"~pagination.identifier):true,
                     ("plentid"~pagination.identifier):lastEntityId??0
