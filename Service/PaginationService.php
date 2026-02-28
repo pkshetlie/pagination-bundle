@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Exception;
 use Pkshetlie\PaginationBundle\Models\Pagination;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\InputBag;
 
 class PaginationService
 {
@@ -38,18 +38,18 @@ class PaginationService
 
     /**
      * @param QueryBuilder $queryBuilder
-     * @param Request $request
+     * @param Request $inputBag
      *
      * @return Pagination
      */
-    public function process(QueryBuilder $queryBuilder, Request $request)
+    public function process(QueryBuilder $queryBuilder, InputBag $inputBag)
     {
 
         $pagination = new Pagination();
-        $pagination->setLastEntityId($request->get('plentid'.$pagination->getIdentifier(), 0));
-        $pagination->setIsPartial($request->get('ppartial'.$pagination->getIdentifier(), false));
+        $pagination->setLastEntityId($inputBag->get('plentid'.$pagination->getIdentifier(), 0));
+        $pagination->setIsPartial($inputBag->get('ppartial'.$pagination->getIdentifier(), false));
         $usableQuery = clone $queryBuilder;
-        $page = $request->get('ppage'.$pagination->getIdentifier(), 1);
+        $page = $inputBag->get('ppage'.$pagination->getIdentifier(), 1);
 
         if (!is_numeric($page)) {
             $page = 1;
